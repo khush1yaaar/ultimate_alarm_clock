@@ -10,6 +10,7 @@ import 'package:ultimate_alarm_clock/app/modules/settings/views/enable_24Hour_fo
 import 'package:ultimate_alarm_clock/app/modules/settings/views/enable_haptic_feedback.dart';
 import 'package:ultimate_alarm_clock/app/modules/settings/views/enable_sorted_alarm_list.dart';
 import 'package:ultimate_alarm_clock/app/modules/settings/views/language_menu.dart';
+import 'package:ultimate_alarm_clock/app/modules/settings/views/physical_buttons.dart';
 import 'package:ultimate_alarm_clock/app/modules/settings/views/theme_value_tile.dart';
 import 'package:ultimate_alarm_clock/app/routes/app_pages.dart';
 import 'package:ultimate_alarm_clock/app/utils/utils.dart';
@@ -97,6 +98,14 @@ class SettingsView extends GetView<SettingsController> {
                   controller: controller,
                   height: height,
                   width: width,
+                  themeController: controller.themeController,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                PhysicalButtons(
+                  width: width,
+                  height: height,
                   themeController: controller.themeController,
                 ),
                 const SizedBox(

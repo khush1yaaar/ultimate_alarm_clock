@@ -52,7 +52,6 @@ class CustomizeUndoDuration extends StatelessWidget{
                     onChanged: (double value) {
                       homeController.selecteddurationDouble.value = value;
                       homeController.duration.value = value.toInt();
-      
                     },
                     min: 0.0,
                     max: 20.0,

@@ -76,6 +76,7 @@ class HomeController extends GetxController {
 
   final RxInt duration = 3.obs;
   final RxDouble selecteddurationDouble = 0.0.obs;
+  final RxString selectedPhysicalButtonAction = 'Not do anything'.obs;
 
   ThemeController themeController = Get.find<ThemeController>();
   RxList Calendars = [].obs;
