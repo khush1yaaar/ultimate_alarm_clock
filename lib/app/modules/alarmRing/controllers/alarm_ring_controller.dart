@@ -19,6 +19,7 @@ import 'package:ultimate_alarm_clock/app/utils/audio_utils.dart';
 
 import 'package:ultimate_alarm_clock/app/utils/utils.dart';
 import 'package:vibration/vibration.dart';
+import 'package:volume_controller/volume_controller.dart';
 
 import '../../home/controllers/home_controller.dart';
 
@@ -42,6 +43,36 @@ class AlarmControlController extends GetxController {
   late double initialVolume;
   late Timer guardianTimer;
   RxInt guardianCoundown = 120.obs;
+
+  // Trigger custom action on volume button press
+  void handleVolumeButtonPress() {
+    if(homeController.selectedPhysicalButtonAction.value == 'Dismiss') {
+      Utils.hapticFeedback();
+      if (currentlyRingingAlarm.value.isGuardian) {
+        guardianTimer.cancel();
+      }
+      if (Utils.isChallengeEnabled(
+        currentlyRingingAlarm.value,
+      )) {
+        Get.toNamed(
+          '/alarm-challenge',
+          arguments:
+              currentlyRingingAlarm.value,
+        );
+      } else {
+        Get.offNamed(
+          '/bottom-navigation-bar',
+          arguments:
+              currentlyRingingAlarm.value,
+        );
+      }
+    }
+    else if(homeController.selectedPhysicalButtonAction.value =='Snooze') {
+      Utils.hapticFeedback();
+      startSnooze();
+    }
+  }
+
 
   getNextAlarm() async {
     UserModel? _userModel = await SecureStorageProvider().retrieveUserModel();
@@ -108,6 +139,7 @@ class AlarmControlController extends GetxController {
     });
   }
 
+  // ignore: unused_element
   Future<void> _fadeInAlarmVolume() async {
     await FlutterVolumeController.setVolume(
       currentlyRingingAlarm.value.volMin / 10.0,
@@ -153,6 +185,11 @@ class AlarmControlController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+
+    VolumeController.instance.addListener((volume) {
+      handleVolumeButtonPress();
+    });
+
     currentlyRingingAlarm.value = Get.arguments;
     print('hwyooo ${currentlyRingingAlarm.value.isGuardian}');
     if (currentlyRingingAlarm.value.isGuardian) {
@@ -290,6 +327,8 @@ class AlarmControlController extends GetxController {
   @override
   void onClose() async {
     super.onClose();
+
+    VolumeController.instance.removeListener();
     Vibration.cancel();
     vibrationTimer!.cancel();
     isAlarmActive = false;

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../utils/constants.dart';
 import '../../../utils/utils.dart';
 import '../../settings/controllers/theme_controller.dart';
 import '../controllers/settings_controller.dart';
@@ -62,7 +61,7 @@ class _LanguageMenuState extends State<LanguageMenu> {
                     value: "${e.key}",
                     label: "${e.value['description']}",
                     style: ButtonStyle(
-                      foregroundColor: MaterialStatePropertyAll(
+                      foregroundColor: WidgetStatePropertyAll(
                         widget.themeController.primaryTextColor.value,
                       ),
                     ),

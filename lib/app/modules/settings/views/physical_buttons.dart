@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ultimate_alarm_clock/app/modules/home/controllers/home_controller.dart';
 import 'package:ultimate_alarm_clock/app/modules/settings/controllers/theme_controller.dart';
-import 'package:ultimate_alarm_clock/app/utils/constants.dart';
+
 
 class PhysicalButtons extends StatelessWidget {
   final HomeController homeController = Get.find<HomeController>();
@@ -24,7 +24,7 @@ class PhysicalButtons extends StatelessWidget {
       // Gesture detector for tapping functionality
       onTap: () {
         Get.defaultDialog(
-          title: 'Physical Buttons', // Dialog title
+          title: 'Physical Button', // Dialog title
           titleStyle: Theme.of(context).textTheme.displaySmall,
           backgroundColor: themeController.secondaryBackgroundColor.value,
           content: Obx(
@@ -100,10 +100,7 @@ class PhysicalButtons extends StatelessWidget {
               () => ListTile(
                 title: Text(
                   'Physical buttons', // Localized text for the title
-                  style: TextStyle(
-                    color: themeController.primaryTextColor.value,
-                    fontSize: 15, // Set font size for the title
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge
                 ),
                 trailing: Wrap(
                   // Trailing section with text and an icon

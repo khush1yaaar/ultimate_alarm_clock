@@ -25,12 +25,15 @@ migrate_working_dir/
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
+.idx
+/.idx
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
 .pub-cache/
 .pub/
 /build/
+pubspec.lock
 /pubspec.lock
 # Symbolication related
 app.*.symbols

@@ -8,6 +8,7 @@ import 'package:ultimate_alarm_clock/app/utils/utils.dart';
 
 import '../controllers/alarm_ring_controller.dart';
 
+// ignore: must_be_immutable
 class AlarmControlView extends GetView<AlarmControlController> {
   AlarmControlView({Key? key}) : super(key: key);
 
@@ -18,7 +19,7 @@ class AlarmControlView extends GetView<AlarmControlController> {
     return Obx(
         () => TextButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
+          backgroundColor: WidgetStateProperty.all(
             themeController.secondaryBackgroundColor.value,
           ),
         ),
@@ -43,6 +44,7 @@ class AlarmControlView extends GetView<AlarmControlController> {
     var height = Get.height;
     return PopScope(
       canPop: false,
+      // ignore: deprecated_member_use
       onPopInvoked: (bool didPop) {
         if (didPop) {
           return;
@@ -71,7 +73,7 @@ class AlarmControlView extends GetView<AlarmControlController> {
                     child: controller.showButton.value
                         ? TextButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
+                              backgroundColor: WidgetStateProperty.all(
                                 kprimaryColor,
                               ),
                             ),
@@ -194,7 +196,7 @@ class AlarmControlView extends GetView<AlarmControlController> {
                           width: width * 0.5,
                           child: TextButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
+                              backgroundColor: WidgetStateProperty.all(
                                 themeController.secondaryBackgroundColor.value,
                               ),
                             ),
